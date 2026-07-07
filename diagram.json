@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-dc-motor", "id": "motor", "top": -60, "left": 150, "attrs": {} },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 79.94,
+      "left": 163.43,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 227,
+      "left": 201.6,
+      "attrs": { "color": "green", "xray": "1" }
+    },
+    {
+      "type": "wokwi-stepper-motor",
+      "id": "stepper1",
+      "top": -255.59,
+      "left": 125.23,
+      "attrs": { "size": "17" }
+    },
+    { "type": "wokwi-a4988", "id": "drv1", "top": -91.2, "left": 360, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": 30.3,
+      "left": 293.5,
+      "attrs": { "distance": "16" }
+    }
+  ],
+  "connections": [
+    [ "esp:18", "motor:VCC", "purple", [ "v0" ] ],
+    [ "esp:GND.4", "motor:GND", "black", [ "v0" ] ],
+    [ "oled1:GND", "esp:GND.1", "black", [ "h-57.6", "v105.6" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v0" ] ],
+    [ "oled1:SDA", "esp:21", "green", [ "v0" ] ],
+    [ "esp:22", "oled1:SCL", "green", [ "h0" ] ],
+    [ "btn1:1.l", "esp:14", "green", [ "h-220.8", "v-105.6" ] ],
+    [ "btn1:2.l", "esp:GND.1", "green", [ "h-211.2", "v-105.4" ] ],
+    [ "drv1:STEP", "esp:26", "green", [ "h0" ] ],
+    [ "drv1:DIR", "esp:27", "green", [ "h0" ] ],
+    [ "ultrasonic1:TRIG", "esp:5", "green", [ "v57.6", "h-274.04" ] ],
+    [ "ultrasonic1:ECHO", "esp:18", "green", [ "v67.2", "h-284.04" ] ],
+    [ "ultrasonic1:VCC", "esp:3V3", "red", [ "v76.8", "h-360.19" ] ],
+    [ "ultrasonic1:GND", "esp:GND.1", "black", [ "v48", "h-390.19" ] ],
+    [ "stepper1:A-", "drv1:1B", "green", [ "v-28.8", "h220.65" ] ],
+    [ "stepper1:A+", "drv1:1A", "green", [ "v-9.6", "h211.05" ] ],
+    [ "drv1:2A", "stepper1:B+", "green", [ "h0" ] ],
+    [ "stepper1:B-", "drv1:2B", "green", [ "v0" ] ],
+    [ "drv1:VDD", "esp:3V3", "green", [ "h0" ] ],
+    [ "drv1:GND.1", "esp:GND.1", "black", [ "v0" ] ],
+    [ "esp:5V", "drv1:VMOT", "red", [ "h436.99", "v-288.08" ] ],
+    [ "drv1:GND.2", "esp:GND.3", "black", [ "v-38.32", "h-268.65", "v201.6" ] ]
+  ],
+  "dependencies": {}
+}
